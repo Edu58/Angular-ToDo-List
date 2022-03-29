@@ -30,4 +30,10 @@ export class AppComponent {
   get items (): readonly ToDo[] {
     return this.List.todos.filter((item: ToDo): boolean => !item.complete)
   }
+
+  addNewToDo (todo: string) {
+    if (todo != '') {
+      this.List.addTodo(todo)
+    }
+  }
 }
