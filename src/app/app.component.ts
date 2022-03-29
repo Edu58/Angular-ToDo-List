@@ -9,6 +9,7 @@ import { ToDoList } from './models/todolist.model';
 })
 export class AppComponent {
   title: string = 'Angular-Todolist';
+  showComplete: boolean = false
 
   private List: ToDoList = new ToDoList('Eddy', [
     new ToDo( 'Cook', true ),
@@ -28,12 +29,12 @@ export class AppComponent {
   }
 
   get items (): readonly ToDo[] {
-    return this.List.todos.filter((item: ToDo): boolean => !item.complete)
+    return this.List.todos.filter((item: ToDo): boolean => this.showComplete || !item.complete)
   }
 
-  addNewToDo (todo: string) {
+  addNewToDo (todo: string): void {
     if (todo != '') {
-      this.List.addTodo(todo)
+      this.List.addTodo( todo )
     }
   }
 }
