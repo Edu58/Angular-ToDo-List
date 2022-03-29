@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToDo } from './models/todo.model';
+import { ToDoList } from './models/todolist.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular-Todolist';
+  title: string = 'Angular-Todolist';
+
+  private List: ToDoList = new ToDoList('Eddy', [
+    new ToDo( 'Cook', true ),
+    new ToDo( 'Run'),
+    new ToDo( 'Milk', true ),
+    new ToDo('Play'),
+  ] )
+  
+  get username (): string {
+    return this.List.user
+  }
+
+  get toDosCount ():number {
+    return this.List.todos.filter((item: ToDo ): boolean=> !item.complete).length
+  }
+
+  get items (): readonly ToDo[] {
+    return this.List.todos
+  }
 }
