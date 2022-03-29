@@ -14,7 +14,9 @@ export class AppComponent {
     new ToDo( 'Cook', true ),
     new ToDo( 'Run'),
     new ToDo( 'Milk', true ),
-    new ToDo('Play'),
+    new ToDo( 'Play' ),
+    new ToDo( 'Play Guitar' ),
+    new ToDo('Code'),
   ] )
   
   get username (): string {
@@ -22,10 +24,10 @@ export class AppComponent {
   }
 
   get toDosCount ():number {
-    return this.List.todos.filter((item: ToDo ): boolean=> !item.complete).length
+    return this.items.length
   }
 
   get items (): readonly ToDo[] {
-    return this.List.todos
+    return this.List.todos.filter((item: ToDo): boolean => !item.complete)
   }
 }
